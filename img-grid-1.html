@@ -9,39 +9,52 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Empty List Wishlist</title>
+    <title></title>
   </head>
   <body>
-    <section class="container mx-auto py-10 px-4">
-      <div class="flex gap-2 items-center mb-6">
-        <img
-          src="https://i.ibb.co/9yK4wxp/home.png"
-          alt="home icon"
-          class="w-6 h-6"
-        /> <span>/</span>
-        <h3 class="text-lg md:text-xl">Wishlist</h3>
+   <section>
+    <div class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+        <!-- Choice Section -->
+        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+          <h2 class="text-3xl font-bold mb-4">CHOICE</h2>
+          <p class="text-gray-600 mb-6">Classic designs with a contemporary twist, high-quality materials and meticulous craftsmanship.</p>
+          <a href="#" class="inline-block border-b-2 border-black pb-1  hover:border-gray-500 transition-colors">LEARN MORE</a>
+        </div>
+      
+        <!-- Men Section -->
+        <div class="relative overflow-hidden rounded-lg lg:col-span-1 row-span-2 text-center">
+          <img src="https://images.unsplash.com/photo-1659553653371-1c0a17aaa8b6?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury watch on wrist" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-8">
+            <h2 class="text-4xl font-bold text-white mb-4">MEN</h2>
+            <p class="text-white mb-6">Sophisticated timepieces <br> for formal occasions.</p>
+            <a href="#" class="inline-block border-b-2 text-yellow-300 border-black pb-1 hover:border-gray-500 transition-colors mx-auto">LEARN MORE</a>
+          </div>
+        </div>
+      
+        <!-- Best Seller Section -->
+        <div class="relative overflow-hidden rounded-lg text-center">
+          <img src="https://images.unsplash.com/photo-1605733513597-a8f8341084e6?q=80&w=2129&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Red leather bag" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-30 flex items-start justify-end p-8">
+            <h2 class="text-3xl font-bold text-white">BEST SELLER</h2>
+          </div>
+        </div>
+      
+        <!-- Gift Packages Section -->
+        <div class="relative overflow-hidden rounded-lg">
+          <img src="https://images.unsplash.com/photo-1660038018942-9880022c039b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Luxury watch display" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-end p-8">
+            <h2 class="text-3xl font-bold text-white mb-2">GIFT</h2>
+            <h3 class="text-2xl font-bold text-white">PACKAGES</h3>
+          </div>
+        </div>
+      
+        <!-- Loremous Section -->
+        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+          <h2 class="text-3xl font-bold mb-4">LOREMOUS</h2>
+          <p class="text-gray-600 mb-6">Luxurious watches made with premium materials Limited edition timepieces designs.</p>
+          <a href="#" class="inline-block border-b-2 border-black pb-1 hover:border-gray-500 transition-colors">LEARN MORE</a>
+        </div>
       </div>
-      <h1 class="text-4xl md:text-6xl text-center my-12">My Wishlist</h1>
-      <div
-        class="bg-white rounded-3xl h-[30rem] flex flex-col justify-center items-center p-5"
-      >
-        <img
-          src="https://i.ibb.co/BrbP8X8/fi-7326939.png"
-          alt="cart icon"
-          class="mx-auto w-24 h-24 md:w-32 md:h-32"
-        />
-        <h2 class="text-2xl md:text-3xl text-center my-4">Empty List</h2>
-        <p class="text-center text-sm md:text-base">
-          You don't have any products in the Wishlist yet. You will find a
-          <br />
-          lot of interesting products on our Shop page.
-        </p>
-        <button
-          class="inline-flex items-center justify-center h-12 gap-2 px-6 my-12 text-sm font-medium tracking-wide text-white transition duration-300 rounded-full  bg-[#192434] transition duration-300 ease-in-out hover:bg-[#1C2834]"
-        >
-          <span>RETURN TO SHOP</span>
-        </button> 
-      </div>
-    </section>
+   </section>
   </body>
 </html>
