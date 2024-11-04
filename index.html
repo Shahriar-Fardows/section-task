@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <title>Fashion Showcase</title>
+    <style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none; /* Internet Explorer and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        .step.active .step-indicator {
+            background-color: #3b82f6; /* Tailwind's blue-500 */
+            
+        }
+        .step.active .step-title {
+            color: #3b82f6; /* Tailwind's blue-500 */
+            opacity: 1;
+        }
+        .step .step-indicator {
+            width: 32px;
+            height: 23px;
+            background-color: #e5e7eb; /* Tailwind's gray-300 */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .step {
+            display: flex;
+            transition: color 0.3s ease;
+        }
+        #progress-bar {
+            position: absolute;
+            left: 65px;
+            top: 56px; /* Start at the top of the progress bar container */
+            height: 0; /* Start height */
+            width: 4px;
+            background-color: #3b82f6; /* Initial gray color */
+            transition: height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Container -->
+    <section class="">
+        <div class="flex flex-col lg:flex-row my-4 lg:my-12 mx-4 lg:mx-14 bg-white rounded-lg shadow-xl h-[950px] overflow-auto no-scrollbar" id="whole-section">
+            <!-- Left side -->
+            <div class="flex-1 p-6 lg:p-14 w-full lg:w-1/2 relative sticky top-0">
+                <!-- Step Bar -->
+                <div class="absolute left-8 top-0 bottom-0" id="progress-bar"></div>
+                <div id="content-container" class="space-y-8 lg:space-y-12 pr-4">
+                    <div class="step" data-step="1">
+                        <div class="step-indicator start-indictor"></div>
+                        <div class="step-title opacity-40">
+                            <p class="text-sm text-gray-600">- Men's Fashion -</p>
+                            <h2 class="my-3 text-xl lg:text-2xl text-black font-bold">Trendsetting Styles for Him</h2>
+                            <p class="my-1 text-sm lg:text-base">Discover the latest in men's fashion. From casual wear to formal attire, our collection offers a perfect blend of comfort and style for the modern man.</p>
+                            <button class="py-2 px-6 mt-4 rounded-3xl bg-slate-950 text-white text-sm lg:text-base hover:bg-slate-800 transition-colors">Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-indicator"></div>
+                        <div class="step-title opacity-40">
+                            <p class="text-sm text-gray-600">- Women's Fashion -</p>
+                            <h2 class="my-3 text-xl lg:text-2xl text-black font-bold">Elegant Designs for Her</h2>
+                            <p class="my-1 text-sm lg:text-base">Explore our curated selection of women's fashion. From chic dresses to versatile separates, find pieces that express your unique style and elevate your wardrobe.</p>
+                            <button class="py-2 px-6 mt-4 rounded-3xl bg-slate-950 text-white text-sm lg:text-base hover:bg-slate-800 transition-colors">Shop Now</button>
+                        </div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-indicator end-indictor"></div>
+                        <div class="step-title opacity-40">
+                            <p class="text-sm text-gray-600">- Accessories -</p>
+                            <h2 class="my-3 text-xl lg:text-2xl text-black font-bold">Complete Your Look</h2>
+                            <p class="my-1 text-sm lg:text-base">Add the finishing touches to your outfit with our range of accessories. From statement jewelry to practical bags, find the perfect complement to your style.</p>
+                            <button class="py-2 px-6 mt-4 rounded-3xl bg-slate-950 text-white text-sm lg:text-base hover:bg-slate-800 transition-colors">Shop Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side image box -->
+            <div id="image-box" class="hidden lg:block flex-1 w-full lg:w-1/2 relative">
+                <div id="image-container" class="w-full">
+                    <img class="h-[950px] w-full object-cover" src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Men's Fashion" aria-label="Image showcasing men's fashion trends" />
+                    <img class="h-[950px] w-full object-cover" src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Women's Fashion" aria-label="Image showcasing women's fashion trends" />
+                    <img class="h-[950px] w-full object-cover" src="https://images.unsplash.com/photo-1523779105320-d1cd346ff52b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Accessories" aria-label="Image showcasing fashion accessories" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const imageBox = document.getElementById("image-box");
+        const progressBar = document.getElementById("progress-bar");
+        const steps = document.querySelectorAll(".step");
+        const contentContainer = document.getElementById("content-container");
+        const wholeSection = document.getElementById("whole-section");
+
+        function updateUI() {
+            const scrollContainer = wholeSection;
+            const scrollPercentage =
+                (scrollContainer.scrollTop / (scrollContainer.scrollHeight - scrollContainer.clientHeight)) * 100;
+
+            const startIndicator = document.querySelector('.start-indictor');
+            const startIndicatorOffset = startIndicator.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
+
+            // Adjust the progress bar height to start from the start-indictor position
+            const adjustedScrollTop = scrollContainer.scrollTop - startIndicatorOffset;
+            const adjustedScrollHeight = scrollContainer.scrollHeight - startIndicatorOffset - scrollContainer.clientHeight;
+
+            // Calculate the scroll percentage based on adjusted height
+            const adjustedScrollPercentage = Math.max(0, Math.min(50, (adjustedScrollTop / adjustedScrollHeight) * 100));
+
+            progressBar.style.height = `${adjustedScrollPercentage}%`;
+
+            // Determine the current step based on scroll position
+            const currentStep = Math.min(Math.floor(adjustedScrollPercentage / (50 / (steps.length - 0.9))), steps.length - 1);
+            steps.forEach((step, index) => {
+                if (index <= currentStep) {
+                    step.classList.add("active");
+                } else {
+                    step.classList.remove("active");
+                }
+            });
+
+            // If you're not on mobile, sync content scrolling
+            const isMobile = window.innerWidth < 1024; // lg breakpoint
+            if (!isMobile) {
+                const contentScrollPercentage = adjustedScrollPercentage / 100;
+                contentContainer.scrollTop = contentScrollPercentage * (contentContainer.scrollHeight - contentContainer.clientHeight);
+            }
+        }
+
+        wholeSection.addEventListener("scroll", updateUI);
+        window.addEventListener("resize", updateUI);
+
+        // Initial UI update
+        updateUI();
+    </script>
+</body>
+</html>

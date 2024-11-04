@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <section>
+    <div class="container mx-auto px-4 py-8 ">
+        <div class="flex gap-2 items-center mb-6">
+            <img
+              src="https://i.ibb.co/9yK4wxp/home.png"
+              alt="home icon"
+              class="w-6 h-6"
+            /> <span>/</span>
+            <h3 class="text-lg md:text-xl">Wishlist</h3>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl text-center my-12">My Wishlist</h1>
+        <div class="bg-white rounded-lg shadow overflow-x-auto">
+            <table class="w-full">
+                <thead>
+                    <tr class="text-left text-sm font-medium text-gray-500 border-b">
+                        <th class="p-4 w-full sm:w-auto">PRODUCT</th>
+                        <th class="p-4 hidden sm:table-cell">PRICE</th>
+                        <th class="p-4">QUANTITY</th>
+                        <th class="p-4 hidden sm:table-cell">SUBTOTAL</th>
+                        <th class="p-4 hidden sm:table-cell"></th>
+                        <th class="p-4">ARRANGE</th>
+                    </tr>
+                </thead>
+                <tbody id="wishlist-items">
+                    <!-- Wishlist items will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <template id="wishlist-item-template">
+        <tr class="border-b" data-item-id="">
+            <td class="p-4">
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-400 hover:text-gray-600 remove-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                            <path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
+                        </svg>
+                    </button>
+                    <img src="" alt="" class="w-20 h-20 object-cover rounded"/>
+                    <span class="font-medium product-name"></span>
+                </div>
+            </td>
+            <td class="p-4 hidden sm:table-cell product-price"></td>
+            <td class="p-4">
+                <div class="flex items-center space-x-2">
+                    <button class="w-8 h-8 flex items-center justify-center border rounded hover:bg-gray-50 decrease-quantity">-</button>
+                    <span class="w-8 text-center quantity-value">1</span>
+                    <button class="w-8 h-8 flex items-center justify-center border rounded hover:bg-gray-50 increase-quantity">+</button>
+                </div>
+            </td>
+            <td class="p-4 hidden sm:table-cell subtotal"></td>
+            <td class="p-4">
+                    <div  class="text-sm text-gray-500 date-added my-2"></div>
+                    <button class="bg-gray-900 text-white px-4 py-2 rounded text-sm hover:bg-gray-800">
+                        ADD TO BAG
+                    </button>
+            </td>
+            <td class="p-4">
+                <button class="text-gray-400 hover:text-gray-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="12" cy="5" r="1"></circle>
+                        <circle cx="12" cy="19" r="1"></circle>
+                    </svg>
+                </button>
+            </td>
+        </tr>
+    </template>
+
+   </section>
+    <script>
+        const wishlistItems = [
+            {
+                id: 1,
+                name: 'Retro Breathable Casual Shoe',
+                price: 320.00,
+                image: 'https://toptenmartltd.com/wp-content/uploads/2023/11/Nike-26.jpg',
+                dateAdded: 'Oct 15, 2024'
+            },
+            {
+                id: 2,
+                name: 'Breathable Light Weight Casual Shoe',
+                price: 199.00,
+                image: 'https://toptenmartltd.com/wp-content/uploads/2023/11/Nike-26.jpg',
+                dateAdded: 'Oct 25, 2024'
+            },
+            {
+                id: 3,
+                name: 'Retro Breathable Casual Shoe',
+                price: 320.00,
+                image: 'https://toptenmartltd.com/wp-content/uploads/2023/11/Nike-26.jpg',
+                dateAdded: 'Sep 30, 2024'
+            }
+        ];
+
+        
+
+        function renderWishlistItems() {
+            const wishlistContainer = document.getElementById('wishlist-items');
+            const template = document.getElementById('wishlist-item-template');
+
+            wishlistItems.forEach(item => {
+                const clone = template.content.cloneNode(true);
+                const row = clone.querySelector('tr');
+
+                row.dataset.itemId = item.id;
+                row.querySelector('.product-name').textContent = item.name;
+                row.querySelector('.product-price').textContent = `$${item.price.toFixed(2)}`;
+                row.querySelector('img').src = item.image;
+                row.querySelector('img').alt = item.name;
+                row.querySelector('.date-added').textContent = `Added On ${item.dateAdded}`;
+                row.querySelector('.subtotal').textContent = `$${item.price.toFixed(2)}`;
+
+                wishlistContainer.appendChild(clone);
+            });
+        }
+
+        function updateQuantity(itemId, action) {
+            const row = document.querySelector(`tr[data-item-id="${itemId}"]`);
+            const quantityElement = row.querySelector('.quantity-value');
+            const subtotalElement = row.querySelector('.subtotal');
+            let quantity = parseInt(quantityElement.textContent);
+            const item = wishlistItems.find(item => item.id === parseInt(itemId));
+
+            if (action === 'increase') {
+                quantity++;
+            } else if (action === 'decrease' && quantity > 1) {
+                quantity--;
+            }
+
+            quantityElement.textContent = quantity;
+            subtotalElement.textContent = `$${(item.price * quantity).toFixed(2)}`;
+        }
+
+        function removeItem(itemId) {
+            const row = document.querySelector(`tr[data-item-id="${itemId}"]`);
+            row.remove();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWishlistItems();
+
+            document.getElementById('wishlist-items').addEventListener('click', (e) => {
+                const itemId = e.target.closest('tr').dataset.itemId;
+
+                if (e.target.closest('.increase-quantity')) {
+                    updateQuantity(itemId, 'increase');
+                } else if (e.target.closest('.decrease-quantity')) {
+                    updateQuantity(itemId, 'decrease');
+                } else if (e.target.closest('.remove-item')) {
+                    removeItem(itemId);
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
